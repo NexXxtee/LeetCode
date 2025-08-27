@@ -4,9 +4,9 @@
 # [1, 2, 3, 4, 5]
 # [-1, 0, 1, 2]
 # [-5, -4, -3, 1, 4, 10]
+from collections import deque
 
-
-def sortedSquares(nums):
+def sortedsquares(nums):
         left = 0
         right = len(nums) - 1
         result = []
@@ -21,6 +21,19 @@ def sortedSquares(nums):
 
         return result[::-1]
 
-print(sortedSquares([1, 2, 3, 4, 5]))
-print(sortedSquares([-1, 0, 1, 2]))
-print(sortedSquares([-5, -4, -3, 1, 4, 10]))
+
+# мое решение 
+def sortedSquares(nums):
+        left = 0
+        right = len(nums) - 1
+        result = deque()
+
+        while left <= right:
+            if abs(nums[left]) > abs(nums[right]):
+                result.appendleft(nums[left] ** 2)
+                left += 1
+            else:
+                result.appendleft(nums[right] ** 2)
+                right -= 1
+
+        return list(result) 
